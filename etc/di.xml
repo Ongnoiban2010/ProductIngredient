@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Đây là file khai báo đầu vào nguồn dữ liệu collection -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Dtn\ProductIngredient\Model\ResourceModel\Ingredient\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dtn_catalog_ingredient</argument>
+            <argument name="resourceModel" xsi:type="string">Dtn\ProductIngredient\Model\ResourceModel\Ingredient</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dtn_productingredient_listing_data_source" xsi:type="string">Dtn\ProductIngredient\Model\ResourceModel\Ingredient\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Dtn\ProductIngredient\Model\ImageUploader">
+    <arguments>
+        <!-- Temporary file stored in pub/media/faq/tmp/icon -->
+        <argument name="baseTmpPath" xsi:type="string">dtn/tmp/image</argument>
+        <argument name="basePath" xsi:type="string">dtn/image</argument>
+        <argument name="allowedExtensions" xsi:type="array">
+            <item name="jpg" xsi:type="string">jpg</item>
+            <item name="jpeg" xsi:type="string">jpeg</item>
+            <item name="gif" xsi:type="string">gif</item>
+            <item name="png" xsi:type="string">png</item>
+        </argument>
+    </arguments>
+</type>
+</config>

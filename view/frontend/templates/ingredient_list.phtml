@@ -1,0 +1,18 @@
+<?php 
+$a = $block->getIngredientCollection();
+$productCollection = $block->getListIngredient();
+foreach ($productCollection as $product) { 
+     $b = $product->getIngredient_attribute();  
+}
+$mang = explode(',', $b);
+$a->addFieldToFilter('entity_id', array('in' => $mang));
+foreach ($a as $value) {
+	?>
+	<div style="text-align: center; float: left;margin-left: 10px">
+		<img src="<?php echo $block->getUrlImage().$value->getImage();?>" width="54" height="54"  />
+		<br>
+		<?php  echo $value->getName(); ?>
+	</div>
+<?php
+	}
+?>
