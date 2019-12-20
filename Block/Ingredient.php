@@ -43,15 +43,13 @@ class Ingredient extends Template
 		return $this->registry->registry('product');
 	}
 
-	public function getListIngredient()
+	public function getProductById()
 	{
 		$product = $this->getCurrentProduct();
 		$stock = $this->stockRegistry->getStockItem($product->getId());
-		// return $stock->getId();
-
         $collection = $this->_productCollectionFactory->create();
         $collection->addAttributeToSelect('*');
-        $collection->addAttributeToFilter('entity_id',$stock->getId()); // fetching only 3 products
+        $collection->addAttributeToFilter('entity_id',$stock->getId());
         return $collection;
 	}
 

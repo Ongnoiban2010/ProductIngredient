@@ -8,9 +8,6 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use Magento\Framework\AuthorizationInterface;
 use Magento\Store\Model\StoreManagerInterface;
-/**
- * Class DataProvider
- */
 
 class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
 {
@@ -44,23 +41,10 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         $this->storeManager = $storeManager;
     }
 
-    /**
-     * Prepares Meta
-     *
-     * @param array $meta
-     * @return array
-     */
-
     public function prepareMeta(array $meta)
     {
         return $meta;
     }
-
-    /**
-     * Get data
-     *
-     * @return array
-     */
 
     public function getData()
     {
@@ -68,7 +52,6 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
             return $this->loadedData;
         }
         $items = $this->collection->getItems();
-        /** @var $label \Dtn\ProductLabel\Model\Label */
         foreach ($items as $ingredient) {
             $this->loadedData[$ingredient->getId()] = $ingredient->getData();
             if ($ingredient->getImage()) {
@@ -78,7 +61,6 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
                 $this->loadedData[$ingredient->getId()] = array_merge($fullData[$ingredient->getId()], $m);
             }
         }
-
         $data = $this->dataPersistor->get('dtn_productingredient_ingredient');
         if (!empty($data)) {
             $ingredient = $this->collection->getNewEmptyItem();
@@ -89,10 +71,6 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
 
         return $this->loadedData;
     }
-
-    /**
-     * @inheritDoc
-     */
 
     public function getMeta()
     {

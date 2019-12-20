@@ -27,14 +27,11 @@ class Edit extends \Magento\Backend\App\Action implements HttpGetActionInterface
         $id = $this->getRequest()->getParam('entity_id');
         $resultRedirect = $this->resultRedirectFactory->create();
         $model = $this->_objectManager->create('Dtn\ProductIngredient\Model\Ingredient');
-
         $registryObject = $this->_objectManager->get('Magento\Framework\Registry');
-
         if ($id) {
             $model->load($id);
             if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This Ingredient no longer exists.'));
-                // $resultRedirect = $this->resultRedirectFactory->create();
                 return $resultRedirect->setPath('*/*/');
             }
         }
